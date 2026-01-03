@@ -36,6 +36,15 @@ function AdminPanel() {
   const loadOrders = async () => {
     try {
       const response = await orderService.getAllOrders(keycloak);
+      console.log('===== API RESPONSE =====');
+      console.log('Full response:', response);
+      console.log('Response data:', response.data);
+      if (response.data && response.data.length > 0) {
+        console.log('First order:', response.data[0]);
+        console.log('First order username:', response.data[0].username);
+        console.log('First order userId:', response.data[0].userId);
+      }
+      console.log('========================');
       setOrders(response.data);
     } catch (err) {
       console.log('Failed to load orders');

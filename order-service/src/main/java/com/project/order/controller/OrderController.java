@@ -1,5 +1,6 @@
 package com.project.order.controller;
 
+import com.project.order.dto.OrderDTO;
 import com.project.order.model.Order;
 import com.project.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -44,8 +46,19 @@ public class OrderController {
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public List<Order> getAllOrders() {
-        return orderService.getAllOrders();
+    public ResponseEntity<List<OrderDTO>> getAllOrders() {
+        List<Order> orders = orderService.getAllOrders();
+        System.out.println("=== DEBUG: Returning " + orders.size() + " orders ===");
+        if (!orders.isEmpty()) {
+            Order first = orders.get(0);
+            System.out.println("First order - ID: " + first.getId() + ", UserID: " + first.getUserId() + ", Username: " + first.getUsername());
+        }
+        List<OrderDTO> dtos = orders.stream().map(OrderDTO::new).collect(Collectors.toList());
+        return ResponseEntity.ok()
+                .header("Cache-Control", "no-cache, no-store, must-revalidate")
+                .header("Pragma", "no-cache")
+                .header("Expires", "0")
+                .body(dtos);
     }
 
     @GetMapping("/{id}")

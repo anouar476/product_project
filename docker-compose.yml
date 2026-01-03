@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: productuser
       POSTGRES_PASSWORD: productpass
     ports:
-      - "5432:5432"
+      - "5434:5432"
     volumes:
       - product-data:/var/lib/postgresql/data
     networks:
@@ -110,10 +110,27 @@ services:
     networks:
       - microservices-net
 
+  sonarqube:
+    image: sonarqube:latest
+    container_name: bouselhdam-sonarqube
+    ports:
+      - "9000:9000"
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
+    networks:
+      - microservices-net
+
 volumes:
   product-data:
   order-data:
   keycloak-data:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:
 
 networks:
   microservices-net:

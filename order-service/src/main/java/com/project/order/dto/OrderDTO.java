@@ -1,38 +1,31 @@
-package com.project.order.model;
+package com.project.order.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import com.project.order.model.Order;
+import com.project.order.model.OrderItem;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "orders")
-public class Order {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OrderDTO {
     private Long id;
-
     private String userId;
-
-    @Column(name = "username")
-    @JsonProperty("username")
     private String username;
-
     private LocalDateTime dateCommande;
     private String statut;
     private Double montantTotal;
+    private List<OrderItem> items;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private List<OrderItem> items = new ArrayList<>();
-
-    public Order() {
-        this.dateCommande = LocalDateTime.now();
-        this.statut = "PENDING";
+    public OrderDTO(Order order) {
+        this.id = order.getId();
+        this.userId = order.getUserId();
+        this.username = order.getUsername();
+        this.dateCommande = order.getDateCommande();
+        this.statut = order.getStatut();
+        this.montantTotal = order.getMontantTotal();
+        this.items = order.getItems();
     }
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -87,11 +80,5 @@ public class Order {
 
     public void setItems(List<OrderItem> items) {
         this.items = items;
-    }
-
-    public void calculateTotal() {
-        this.montantTotal = items.stream()
-                .mapToDouble(item -> item.getPrix() * item.getQuantite())
-                .sum();
     }
 }
