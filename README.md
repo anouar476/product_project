@@ -62,7 +62,7 @@ SonarQube a été intégré au projet via `docker-compose.yml`:
 ```yaml
 sonarqube:
   image: sonarqube:latest
-  container_name: bouselhdam-sonarqube
+  container_name: product_project-sonarqube
   ports:
     - "9000:9000"
   environment:
@@ -442,7 +442,7 @@ echo "=== Health Check Complete ==="
 ```bash
 # 1. Cloner le repository
 git clone <repository-url>
-cd BOUSELHDAM
+cd product_project
 
 # 2. Démarrer tous les services
 docker compose up -d
