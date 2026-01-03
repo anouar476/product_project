@@ -1,0 +1,98 @@
+{
+  "realm": "microservices",
+  "enabled": true,
+  "sslRequired": "none",
+  "roles": {
+    "realm": [
+      {
+        "name": "ADMIN",
+        "description": "Administrator role"
+      },
+      {
+        "name": "CLIENT",
+        "description": "Client role"
+      }
+    ]
+  },
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "email": "admin@example.com",
+      "firstName": "Admin",
+      "lastName": "User",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["ADMIN", "CLIENT"]
+    },
+    {
+      "username": "user",
+      "enabled": true,
+      "email": "user@example.com",
+      "firstName": "Regular",
+      "lastName": "User",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "user123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["CLIENT"]
+    },
+    {
+      "username": "moudad",
+      "enabled": true,
+      "email": "moudad@test.com",
+      "firstName": "anouar",
+      "lastName": "moudad",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "moudad123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["CLIENT"]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "microservices-client",
+      "enabled": true,
+      "publicClient": true,
+      "directAccessGrantsEnabled": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "redirectUris": [
+        "http://localhost:3000/*",
+        "http://localhost:8000/*"
+      ],
+      "webOrigins": [
+        "*"
+      ],
+      "protocol": "openid-connect",
+      "protocolMappers": [
+        {
+          "name": "realm-roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String"
+          }
+        }
+      ]
+    }
+  ]
+}

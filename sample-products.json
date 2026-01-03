@@ -1,0 +1,62 @@
+[
+  {
+    "nom": "Laptop Dell XPS 15",
+    "description": "High-performance laptop with Intel i7 processor, 16GB RAM, and 512GB SSD",
+    "prix": 1299.99,
+    "quantite": 15
+  },
+  {
+    "nom": "iPhone 14 Pro",
+    "description": "Latest Apple smartphone with A16 Bionic chip, 256GB storage, and ProMotion display",
+    "prix": 999.99,
+    "quantite": 25
+  },
+  {
+    "nom": "Samsung 4K Smart TV 55\"",
+    "description": "Ultra HD Smart TV with HDR support and built-in streaming apps",
+    "prix": 699.99,
+    "quantite": 10
+  },
+  {
+    "nom": "Sony WH-1000XM5 Headphones",
+    "description": "Premium noise-cancelling wireless headphones with exceptional sound quality",
+    "prix": 399.99,
+    "quantite": 30
+  },
+  {
+    "nom": "iPad Air 5th Gen",
+    "description": "Powerful tablet with M1 chip, 10.9-inch display, and Apple Pencil support",
+    "prix": 599.99,
+    "quantite": 20
+  },
+  {
+    "nom": "Logitech MX Master 3 Mouse",
+    "description": "Advanced wireless mouse with ergonomic design and customizable buttons",
+    "prix": 99.99,
+    "quantite": 50
+  },
+  {
+    "nom": "Nintendo Switch OLED",
+    "description": "Gaming console with vibrant OLED screen and enhanced audio",
+    "prix": 349.99,
+    "quantite": 18
+  },
+  {
+    "nom": "Canon EOS R6 Camera",
+    "description": "Full-frame mirrorless camera with 20MP sensor and 4K video recording",
+    "prix": 2499.99,
+    "quantite": 8
+  },
+  {
+    "nom": "Bose SoundLink Revolve+",
+    "description": "Portable Bluetooth speaker with 360-degree sound and water resistance",
+    "prix": 299.99,
+    "quantite": 35
+  },
+  {
+    "nom": "MacBook Pro 14\" M2",
+    "description": "Professional laptop with M2 Pro chip, 16GB RAM, and stunning Retina display",
+    "prix": 1999.99,
+    "quantite": 12
+  }
+]
